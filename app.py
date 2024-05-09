@@ -1,7 +1,12 @@
+import logging
 from flask import Flask, request, jsonify
 from riskassessment import RiskAssessment
 
 app = Flask(__name__)
+
+# Configure logging
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
 
 @app.route('/submit_loan_application', methods=['POST'])
 def submit_loan_application():
@@ -28,6 +33,11 @@ def submit_loan_application():
         result = "Approved"
     else:
         result = "Rejected"
+
+    # Log the decision
+    logger.info('Loan application submitted: Credit Score=%s, DTI Ratio=%s, Employment Status=%s, Purpose=%s',
+                credit_score, dti_ratio, employment_status, purpose)
+    logger.info('Loan decision: Result=%s, Total Score=%s', result, total_score)
 
     # Return the decision
     return jsonify({'result': result, 'total_score': total_score})
