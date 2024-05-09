@@ -1,5 +1,7 @@
+
 from flask import Flask, request, jsonify
 from pymongo import MongoClient
+from riskassessment import RiskAssessment
 
 app = Flask(__name__)
 
@@ -12,7 +14,6 @@ collection = db['loan_applications']
 print("Connected to MongoDB")
 print("Database 'loanapplication' and collection 'loan_applications' created")
 
-
 # Endpoint for submitting loan applications
 @app.route('/submit_loan_application', methods=['POST'])
 def submit_loan_application():
@@ -22,11 +23,12 @@ def submit_loan_application():
     employment_status = data.get('employment_status')
     purpose = data.get('purpose')
 
-    if None in (credit_score, employment_status, purpose):
+    if None in (credit_score, employment_status,purpose):
         return jsonify({'error': 'Missing required fields'}), 400
 
-    # Calculate total score (example)
-    total_score = credit_score + employment_status
+    # Calculate total score using RiskAssessment class
+    risk_assessment = RiskAssessment(credit_score, employment_status,purpose)
+    total_score = risk_assessment.score_calculator()
 
     # Determine loan approval based on total score (example)
     result = "Approved" if total_score >= 75 else "Rejected"

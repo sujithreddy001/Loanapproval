@@ -1,7 +1,8 @@
+
 class RiskAssessment:
-    def __init__(self, credit_score, dti_ratio, employment_status, purpose):
+    def __init__(self, credit_score, employment_status, purpose):
         self.credit_score = credit_score
-        self.dti_ratio = dti_ratio
+        # self.dti_ratio = dti_ratio
         self.employment_status = employment_status
         self.purpose = purpose
 
@@ -30,8 +31,7 @@ class RiskAssessment:
             purpose_points = 70
         else:
             purpose_points = 60
-    # Credit Score: 50%
-    # Employment Status: 30%
-    # Purpose of the Loan: 20%
-        total_score=(credit_score_points * 0.50)+(employment_points * 0.30)+(purpose_points * 0.20)
+
+        # Credit Score: 50%, Employment Status: 30%, Purpose of the Loan: 20%
+        total_score = float((credit_score_points * 0.50)) + float((employment_points * 0.30)) + float((purpose_points * 0.20))
         return total_score
