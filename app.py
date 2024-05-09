@@ -5,16 +5,15 @@ from riskassessment import RiskAssessment
 
 app = Flask(__name__)
 
-# Connect to MongoDB
+# Connecting to MongoDB
 client = MongoClient('localhost', 27017)
 db = client['loanapplication']
 collection = db['loan_applications']
 
-# Log messages
+# for Log messages
 print("Connected to MongoDB")
 print("Database 'loanapplication' and collection 'loan_applications' created")
 
-# Endpoint for submitting loan applications
 @app.route('/submit_loan_application', methods=['POST'])
 def submit_loan_application():
     data = request.json
@@ -26,11 +25,9 @@ def submit_loan_application():
     if None in (credit_score, employment_status,purpose):
         return jsonify({'error': 'Missing required fields'}), 400
 
-    # Calculate total score using RiskAssessment class
     risk_assessment = RiskAssessment(credit_score, employment_status,purpose)
     total_score = risk_assessment.score_calculator()
 
-    # Determine loan approval based on total score (example)
     result = "Approved" if total_score >= 75 else "Rejected"
 
     # Insert application data into the MongoDB collection

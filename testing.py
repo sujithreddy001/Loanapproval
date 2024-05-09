@@ -5,7 +5,7 @@ from LoanApprovalModule import LoanApprovalModule
 
 class TestLoanApproval(unittest.TestCase):
     def test_approve_loan_approved(self):
-        # Test loan approval logic with mock loan application data for approval
+        # Test loan approval logic with mock 
         application_data = {
             'credit_score': 750,
             'loan_amount': 10000,
@@ -16,7 +16,7 @@ class TestLoanApproval(unittest.TestCase):
         self.assertEqual(result, 'Approved')
 
     def test_approve_loan_rejected(self):
-        # Test loan approval logic with mock loan application data for rejection
+        # Test loan approval logic 
         application_data = {
             'credit_score': 600,
             'loan_amount': 5000,
@@ -27,8 +27,8 @@ class TestLoanApproval(unittest.TestCase):
         self.assertEqual(result, 'Rejected')
 
     def test_approve_loan_invalid_data(self):
-        # Test loan approval logic with invalid loan application data
-        application_data = {}  # Missing required fields
+        # Test loan approval logic  
+        application_data = {}  
         result = LoanApprovalModule.approve_loan(application_data)
         self.assertEqual(result, 'Invalid Data')
 
