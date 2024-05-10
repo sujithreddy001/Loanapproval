@@ -2,7 +2,7 @@
 
 # Loan Approval System
 
-## Overview
+## Overview of Project
 
 This project implements a loan approval system that evaluates loan applications based on various criteria such as credit score, employment status, and the purpose of the loan. It consists of several modules designed to handle different aspects of the loan approval process, including data validation, risk assessment, and approval logic.
 
