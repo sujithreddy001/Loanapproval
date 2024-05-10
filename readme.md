@@ -95,10 +95,9 @@ python app.py
 ```bash
 python test_loan_approval.py
 ```
-curl -X POST \
-     -H "Content-Type: application/json" \
-     -d '{"credit_score": 750, "employment_status": "Employed", "purpose": "Home improvement"}' \
-     http://localhost:5000/submit_loan_applications
+curl -X POST \ -H "Content-Type: application/json" \-d '{"credit_score": 750, "employment_status": "Employed", "purpose": "Home improvement"}' \
+     
+http://localhost:5000/submit_loan_applications
 
 
 ## Contributors
